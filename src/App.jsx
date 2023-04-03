@@ -4,20 +4,19 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
+  const [text, setText] = useState("")
+  const [done, setDone] = useState("")
   const [tasks, setTasks] = useState([
-    {
-      text:'Dawud',
-      done:false
-    }
   ])
 
   function handleSubmit(e) {
     e.preventDefault()
     let newTasks = [...tasks, {
-      text:'Nermin',
+      text,
       done:false
     }]
     setTasks(newTasks)
+    setText("")
   }
 
   return (
@@ -33,8 +32,8 @@ function App() {
           )})
       }
     </ul>
-    <form onSubmit={handleSubmit} className="add-items">
-      <input type="text" name="item" placeholder="Item Name" required/>
+    <form onSubmit={handleSubmit} className="addItems">
+      <input onChange={(e)=> setText(e.target.value)} value={text} type="text" name="item" placeholder="Item Name" required/>
       <input type="submit" value="+ Add Item"/>
     </form>
   </div>
